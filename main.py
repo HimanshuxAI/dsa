@@ -38,3 +38,19 @@ def linear_search(arr,target):
 linear_search([31,41,59,26,41,58],26)
 linear_search([31,41,59,26,41,58],0)
 '''
+
+'''
+def two_n_bit_add(a,b):
+   n=len(a)
+   c=[]*(n+1)
+   carry=0
+   for i in range(len(a)-1,-1,-1):
+      total_sum=a[i]+b[i]+carry
+      c.append(total_sum%2)
+      carry = total_sum//2
+   c.append(carry)
+   return print(c[::-1])
+
+
+
+two_n_bit_add([1, 0, 0],[1, 1, 1])'''
