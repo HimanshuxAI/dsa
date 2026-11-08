@@ -228,3 +228,12 @@ def bubble_sort(arr):
             break
     return arr
 '''
+
+
+def horners_rule(x,a):
+    y=0
+    for c in a:
+        y=c+x*y
+    return y
+
+print(horners_rule(2,[1,2,3,4]))
