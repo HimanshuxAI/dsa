@@ -203,7 +203,7 @@ def binary_search(x,v):
         
 binary_search([1,2,3,5,6,7],3)
 binary_search([1,2,3,5,6,7],6)
-'''
+''''''
 
 def two_sum(a,x):
     seen={}
@@ -213,4 +213,18 @@ def two_sum(a,x):
         rest=x-a[j]
         if rest in seen and seen[rest] != j:
             return [j,seen[rest]]
-print(two_sum([4, 1, 2], 8))
+print(two_sum([4, 1, 2], 8))'''
+'''
+
+def bubble_sort(arr):
+    n = len(arr)
+    for i in range(n):
+        swapped = False
+        for j in range(0, n - i - 1):
+            if arr[j] > arr[j + 1]:
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+                swapped = True
+        if not swapped:
+            break
+    return arr
+'''
