@@ -152,7 +152,7 @@ def merge_sort(A):
 merge_sort([32,41,23,5,6,2,1])
 '''
 
-
+'''
 def merge_sort(a):
    if len(a)>1:
       mid = len(a)//2
@@ -184,4 +184,22 @@ def merge_sort(a):
 
          
 merge_sort([32,41,23,5,6,2,1])
+'''
 
+def binary_search(x,v):
+    left=0
+    right=len(x)-1
+    while left<=right:
+        mid = (left+right)//2
+        if x[mid]==v:
+            return print(mid)
+        elif x[mid]>v:
+            right=mid-1
+        elif x[mid]<v:
+            left=mid+1
+        else:
+            return(print("not found"))
+
+        
+binary_search([1,2,3,5,6,7],3)
+binary_search([1,2,3,5,6,7],6)
