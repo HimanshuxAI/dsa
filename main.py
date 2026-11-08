@@ -229,11 +229,60 @@ def bubble_sort(arr):
     return arr
 '''
 
-
+'''
 def horners_rule(x,a):
     y=0
     for c in a:
         y=c+x*y
     return y
 
-print(horners_rule(2,[1,2,3,4]))
+print(horners_rule(2,[1,2,3,4]))'''
+'''
+
+def inversion_count(arr):
+    if len(arr) <= 1:
+        return arr, 0
+
+    mid = len(arr) // 2
+    left_half, left_inv = inversion_count(arr[:mid])
+    right_half, right_inv = inversion_count(arr[mid:])
+    
+    sorted_arr, merge_inv = merge_and_count(left_half, right_half)
+    
+    return sorted_arr, left_inv + right_inv + merge_inv
+
+def merge_and_count(left, right):
+    i = j = 0
+    merged = []
+    inv_count = 0
+
+    while i < len(left) and j < len(right):
+        if left[i] <= right[j]:
+            merged.append(left[i])
+            i += 1
+        else:
+            merged.append(right[j])
+            inv_count += len(left) - i
+            j += 1
+
+    merged.extend(left[i:])
+    merged.extend(right[j:])
+    return merged, inv_count
+
+arr = [2, 4, 1, 3, 5]
+sorted_arr, total_inversions = inversion_count(arr)
+print(sorted_arr)
+print(total_inversions)  
+'''
+
+'''
+def inversion_count_small(x):
+    inversion=0
+    n=len(x)
+    for i in range(n):
+        for j in range(i+1,n):
+            if x[i]>x[j]:
+                inversion+=1
+    return inversion
+
+print(inversion_count_small([2, 4, 1, 3, 5]))'''
