@@ -286,3 +286,23 @@ def inversion_count_small(x):
     return inversion
 
 print(inversion_count_small([2, 4, 1, 3, 5]))'''
+
+
+
+
+'''
+maximum subarray : brute force theta n 2
+
+
+def max_subarr_brute(arr):
+    max_sum=float('-inf')
+    for i in range(len(arr)):
+        current=0
+        for j in range(i,len(arr)):
+            current+=arr[j]
+            max_sum=max(max_sum,current)
+    return max_sum
+
+print(max_subarr_brute([-2, 1, -3, 4, -1, 2, 1, -5, 4]))
+
+'''
