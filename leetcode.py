@@ -113,3 +113,18 @@ print(find_max_subarray([13,-3,-25,20,-3,-16,-23,18,20,-7,12,-5,-22,15,-4,7],0,1
 
 
 '''
+
+
+'''
+#53 same with Kadane's algorithm
+
+def maxSubArray(nums):
+    best=curr=nums[0]
+    for i in nums[1:]:
+        curr=max(i,curr+i)
+        best=max(best,curr)
+    return best
+
+
+print(maxSubArray([13,-3,-25,20,-3,-16,-23,18,20,-7,12,-5,-22,15,-4,7]))
+'''
