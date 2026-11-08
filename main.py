@@ -185,7 +185,7 @@ def merge_sort(a):
          
 merge_sort([32,41,23,5,6,2,1])
 '''
-
+'''
 def binary_search(x,v):
     left=0
     right=len(x)-1
@@ -203,3 +203,14 @@ def binary_search(x,v):
         
 binary_search([1,2,3,5,6,7],3)
 binary_search([1,2,3,5,6,7],6)
+'''
+
+def two_sum(a,x):
+    seen={}
+    for i in range(len(a)):
+        seen[a[i]]=i
+    for j in range(len(a)):
+        rest=x-a[j]
+        if rest in seen and seen[rest] != j:
+            return [j,seen[rest]]
+print(two_sum([4, 1, 2], 8))
