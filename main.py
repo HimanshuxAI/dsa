@@ -71,7 +71,7 @@ def selection_sort(a):
 
 selection_sort([31,41,59,26,41,58])'''
 
-
+'''
 
 def merge(A,p,q,r):
     n1=q-p+1
@@ -107,4 +107,81 @@ def merge_sort(A,p,r):
 
 
 num=[31,41,59,26,41,58]
-print(merge_sort(num,0,len(num)-1))
+print(merge_sort(num,0,len(num)-1))'''
+
+
+
+'''
+#without sentinels 
+
+def merge_sort(A):
+   if len(A)<=1:
+      return A
+   q=(len(A))//2
+
+   left=A[:q]
+   right=A[q:]
+
+   merge_sort(left)
+   merge_sort(right)
+
+   i = j = k = 0 
+
+
+   while i < len(left) and j < len(right):
+      if left[i] <= right[j]:
+         A[k]=left[i]
+         i+=1
+      else: 
+         A[k]=right[j]
+         j+=1
+      k+=1
+   while i < len(left):
+      A[k]=left[i]
+      i+=1
+      k+=1
+   while j < len(right):
+      A[k]=right[j]
+      j+=1
+      k+=1
+
+
+   print(A)
+
+
+merge_sort([32,41,23,5,6,2,1])
+'''
+
+
+def merge_sort(a):
+   if len(a)>1:
+      mid = len(a)//2
+      left = a[:mid]
+      right=a[mid:]
+
+      merge_sort(left)
+      merge_sort(right)
+
+      i = j = k = 0
+
+      while i < len(left) and j < len(right):
+         if left[i]<=right[j]:
+            a[k]=left[i]
+            i+=1
+         else:
+            a[k]=right[j]
+            j+=1
+         k+=1
+      while i < len(left):
+         a[k]=left[i]
+         i+=1
+         k+=1
+      while j < len(right):
+               a[k]=right[j]
+               j+=1
+               k+=1
+   return print(a)
+
+         
+merge_sort([32,41,23,5,6,2,1])
+
