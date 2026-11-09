@@ -128,3 +128,16 @@ def maxSubArray(nums):
 
 print(maxSubArray([13,-3,-25,20,-3,-16,-23,18,20,-7,12,-5,-22,15,-4,7]))
 '''
+
+
+'''#121 best time to buy and sell stock:
+similar to kadane ' s algorithm 
+'''
+def maxProfit(prices):
+    best = cur = 0
+    for i in range(1, len(prices)):
+        cur = max(0, cur + prices[i] - prices[i-1])
+        best = max(best, cur)
+    return best
+
+print(maxProfit([7,1,5,3,6,4]))
