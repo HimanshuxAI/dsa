@@ -394,3 +394,18 @@ def maximum_subarray(nums,low,high):
 print(maximum_subarray([-2, -1, -3, -4, -1, -1, -5, -4],0,len([-2, -1, -3, -4, -1, -1, -5, -4])-1))
 
 '''
+
+'''
+non recursive and linear time algo method:
+
+def lin(num):
+    max_sum=float('-inf')
+    current=0
+    for i in range(len(num)):
+        current=max(num[i],current+num[i])
+        max_sum=max(current,max_sum)
+    return max_sum
+
+print(lin([-2, -1, -3, -4, -1, -1, -5, -4]))
+'''
+
