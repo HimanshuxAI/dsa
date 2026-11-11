@@ -448,3 +448,42 @@ B = [[5, 6],[7, 8]]
 
 print(mult(A,B))
 '''
+
+'''square multiple matrix'''
+
+'''square multiple matrix'''
+def add_matrix(a,b):
+    n=len(a)
+    return [[a[i][j]+b[i][j] for i in range(n)]for j in range(n)]
+
+def split_matrix(m):
+    mid=len(m)//2
+    a11=[row[:mid] for row in m[:mid]]
+    a12=[row[:mid] for row in m[mid:]]
+    a22=[row[mid:] for row in m[mid:]]
+    a21=[row[mid:] for row in m[:mid]]
+    return a11,a12,a21,a22
+
+def square_multiply_matrix_recurisvely(a,b):
+    n=len(a)
+    if n==1:
+        return [a[0][0]*b[0][0]]
+    a11,a12,a21,a22=split_matrix(a)
+    b11,b12,b21,b22=split_matrix(b)
+
+    c11=add_matrix(square_multiply_matrix_recurisvely(a11,b11),square_multiply_matrix_recurisvely(a12,b21))
+    c12=add_matrix(square_multiply_matrix_recurisvely(a11,b12),square_multiply_matrix_recurisvely(a12,b22))
+    c21=add_matrix(square_multiply_matrix_recurisvely(a21,b11),square_multiply_matrix_recurisvely(a21,b21))
+    c22=add_matrix(square_multiply_matrix_recurisvely(a21,b12),square_multiply_matrix_recurisvely(a21,b22))
+
+    c=[]
+    for i in range(len(c11)):
+        c.append(c11[i] + c12[i])
+    for i in range(len(c21)):
+        c.append(c21[i]+ c22[i])
+    return c
+
+A = [[1, 2], [3, 4]]
+B = [[5, 6], [7, 8]]
+print(square_multiply_matrix_recurisvely(A, B))
+    
