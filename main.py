@@ -430,3 +430,21 @@ def lingo(nums):
     return (low,high,max_sum)
 print(lingo([-2, 1, -3, 4, -1, 1, -5, 4]))
 '''
+
+'''
+# matrix multipl o n 3
+def mult(a,b):
+    n=len(a)
+    c=[[0.0 for col in range(n)] for row in range(n)]
+    for i in range(n):
+        for j in range(n):
+            for k in range(n):
+                c[i][j]+=a[i][k]*b[k][j]
+
+    return c
+A = [[1, 2], [3, 4]]
+
+B = [[5, 6],[7, 8]]
+
+print(mult(A,B))
+'''
