@@ -409,3 +409,24 @@ def lin(num):
 print(lin([-2, -1, -3, -4, -1, -1, -5, -4]))
 '''
 
+'''
+now same "non recursive and linear time algo method:" with tracking the low and high 
+
+def lingo(nums):
+    max_sum=float('-inf')
+    current=0
+    low=0
+    high=0
+    temp_start=0
+
+    for i,num in enumerate(nums):
+        if num>current+num:
+            current=num;temp_start=i
+        else: current=current+num
+        if current>max_sum:
+            max_sum=current
+            low=temp_start
+            high=i
+    return (low,high,max_sum)
+print(lingo([-2, 1, -3, 4, -1, 1, -5, 4]))
+'''
