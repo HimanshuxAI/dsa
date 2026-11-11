@@ -290,22 +290,6 @@ print(inversion_count_small([2, 4, 1, 3, 5]))'''
 
 
 
-'''
-maximum subarray : brute force theta n 2
-
-
-def max_subarr_brute(arr):
-    max_sum=float('-inf')
-    for i in range(len(arr)):
-        current=0
-        for j in range(i,len(arr)):
-            current+=arr[j]
-            max_sum=max(max_sum,current)
-    return max_sum
-
-print(max_subarr_brute([-2, 1, -3, 4, -1, 2, 1, -5, 4]))
-
-'''
 
 '''
 
@@ -349,3 +333,20 @@ print(find_maximum_subarray([13,-3,-25,20,-3,-16,-23,18,20,-7,12,-5,-22,15,-4,7]
 
 
 '''
+
+
+
+'''
+# brute force in finding the maximum sum in subarray
+'''
+
+def brute_fr(num):
+    max_sum=float('-inf')
+    for i in range(len(num)):
+        current=0
+        for j in range(i,len(num)):
+            current+=num[j]
+            max_sum=max(current,max_sum)
+    return max_sum
+
+print(brute_fr([-2, 1, -3, 4, -1, 1, -5, 4]))
