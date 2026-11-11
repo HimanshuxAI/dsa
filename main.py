@@ -449,9 +449,11 @@ B = [[5, 6],[7, 8]]
 print(mult(A,B))
 '''
 
-'''square multiple matrix'''
 
-'''square multiple matrix'''
+'''
+#square multiple matrix by recursive calling
+
+
 def add_matrix(a,b):
     n=len(a)
     return [[a[i][j]+b[i][j] for i in range(n)]for j in range(n)]
@@ -487,3 +489,54 @@ A = [[1, 2], [3, 4]]
 B = [[5, 6], [7, 8]]
 print(square_multiply_matrix_recurisvely(A, B))
     
+'''
+
+
+'''strassen algorithm:
+'''
+def add(a, b):
+    n = len(a)
+    return [[a[i][j] + b[i][j] for j in range(n)] for i in range(n)]
+
+def sub(a, b):
+    n = len(a)
+    return [[a[i][j] - b[i][j] for j in range(n)] for i in range(n)]
+
+def split_matrices(a, b):
+    n = len(a)
+    mid = n // 2
+    a11 = [i[:mid] for i in a[:mid]]
+    a12 = [i[mid:] for i in a[:mid]]
+    a21 = [i[:mid] for i in a[mid:]]
+    a22 = [i[mid:] for i in a[mid:]]
+
+    b11 = [i[:mid] for i in b[:mid]]
+    b12 = [i[mid:] for i in b[:mid]]
+    b21 = [i[:mid] for i in b[mid:]]
+    b22 = [i[mid:] for i in b[mid:]]
+
+    return (a11, a12, a21, a22, b11, b12, b21, b22)
+
+
+def strassen(a, b):
+    if len(a) == 1:
+        return [[a[0][0] * b[0][0]]]
+
+    a11, a12, a21, a22, b11, b12, b21, b22 = split_matrices(a, b)
+
+    c11 = add(sub(add(strassen(add(a11, a22), add(b11, b22)),strassen(a22, sub(b21, b11))),strassen(add(a11, a12), b22)),strassen(sub(a12, a22), add(b21, b22)))
+
+    c12 = add(strassen(a11, sub(b12, b22)),strassen(add(a11, a12), b22))
+
+    c21 = add(strassen(add(a21, a22), b11),strassen(a22, sub(b21, b11)))
+
+    c22 = add(add( sub(strassen(add(a11, a22), add(b11, b22)), strassen(add(a21, a22), b11)),strassen(a11, sub(b12, b22))),strassen(sub(a21, a11), add(b11, b12)))
+
+    top = [r1 + r2 for r1, r2 in zip(c11, c12)]
+    bottom = [r1 + r2 for r1, r2 in zip(c21, c22)]
+    return top + bottom
+
+
+A = [[1, 2], [3, 4]]
+B = [[5, 6], [7, 8]]
+print(strassen(A, B)) 
