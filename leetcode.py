@@ -147,7 +147,7 @@ print(maxProfit([7,1,5,3,6,4]))'''
 
 '''
 #169 majority elements
-'''
+
 
 def majorityelement(nums):
     seen={}
@@ -166,3 +166,29 @@ def majorityelement(nums):
 nums = [3, 2, 3]
 print(majorityelement(nums))
 
+'''
+
+'''
+# #50 pow(x,n)
+
+def pow(x,n):
+    if n < 1:
+        x=1/x
+        n=-n
+    def helper(x,n):
+        if n==0:
+            return 1
+        half=helper(x,n//2)
+        if n%2==0:
+            return half*half
+        else:
+            return half*half*x
+    return helper(x,n)
+
+
+
+x = -1
+n = 2147483647
+
+print(pow(x,n))
+'''
