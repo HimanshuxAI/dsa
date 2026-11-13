@@ -10,8 +10,8 @@ def two_sum1(arr,x):
         seen[arr[i]]=i
     for j in range(len(arr)):
         complement=x-arr[j]
-        if complement in seen and seen[complement]!=i:
-            return [j,arr[complement]]
+        if complement in seen and seen[complement]!=j:
+            return [j,seen[complement]]
 '''
 
 
@@ -37,6 +37,7 @@ def merge(nums1,m,nums2,n):
     while i<m and j<n:
         if nums1[i]<=nums2[j]:
             merged.append(nums1[i])
+            i+=1
         else:
             merged.append(nums2[j])
             j+=1
@@ -132,7 +133,8 @@ print(maxSubArray([13,-3,-25,20,-3,-16,-23,18,20,-7,12,-5,-22,15,-4,7]))
 
 '''#121 best time to buy and sell stock:
 similar to kadane ' s algorithm 
-'''
+
+
 def maxProfit(prices):
     best = cur = 0
     for i in range(1, len(prices)):
@@ -140,4 +142,27 @@ def maxProfit(prices):
         best = max(best, cur)
     return best
 
-print(maxProfit([7,1,5,3,6,4]))
+print(maxProfit([7,1,5,3,6,4]))'''
+
+
+'''
+#169 majority elements
+'''
+
+def majorityelement(nums):
+    seen={}
+    for num in nums:
+        if num in seen:
+            seen[num]+=1
+        else:
+            seen[num]=1
+        if seen[num] > len(nums) // 2:
+            return num
+     
+
+
+
+
+nums = [3, 2, 3]
+print(majorityelement(nums))
+
