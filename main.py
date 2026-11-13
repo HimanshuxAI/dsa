@@ -547,46 +547,48 @@ print(strassen(A, B))
 
 import numpy as np
 
-def strassen(a,b,threshold=16):
-    n=a.shape[0]
 
-    if n <= threshold:
-        np.matmul(a,b,out = c)
-        return 
-    is_padded=False
-    if n%2!=0:
-        a=np.pad(a, ((0,1),(1,0)), mode="constant", constant_values=0)
-        b=np.pad(b, ((0,1),(1,0)), mode="constant", constant_values=0)
-        n+=1
-        is_padded=True
-    half=n//2
-    a11,a12=a[:half][:half],a[:half][half:]
-    a21,a22=a[half:][:half],a[half:][half:]
-    b11,b12=b[:half][:half],b[:half][half:]
-    b21,b22=b[half:][:half],b[half:][half:]
+def strassen(a, b, threshold=1):
+  a = np.asarray(a)
+  b = np.asarray(b)
+  n = a.shape[0]
 
-    m1=strassen(a11+a22,b11+b22,threshold)
-    m2 = strassen(a21 + a22, b11, threshold)
-    m3 = strassen(a11, b12 - b22, threshold)
-    m4 = strassen(a22, b21 - b11, threshold)
-    m5 = strassen(a11 + a12, b22, threshold)
-    m6 = strassen(a21 - a11, b11 + b12, threshold)
-    m7 = strassen(b12 - b22, b21 + b22, threshold)
+  if n <= threshold:
+    return np.matmul(a, b)
 
-    c11 = m1 + m4 - m5 + m7
-    c12 = m3 + m5
-    c21 = m2 + m4
-    c22 = m1 - m2 + m3 + m6
+  is_padded = False
+  if n % 2 != 0:
+    a = np.pad(a, ((0, 1), (0, 1)), mode="constant", constant_values=0)
+    b = np.pad(b, ((0, 1), (0, 1)), mode="constant", constant_values=0)
+    n += 1
+    is_padded = True
 
-    top = np.hstack((c11,c12))
-    bottom = np.hstack((c21,c22))
+  half = n // 2
+  a11, a12 = a[:half, :half], a[:half, half:]
+  a21, a22 = a[half:, :half], a[half:, half:]
+  b11, b12 = b[:half, :half], b[:half, half:]
+  b21, b22 = b[half:, :half], b[half:, half:]
 
-    c= np.vstack((top,bottom))
+  m1 = strassen(a11 + a22, b11 + b22, threshold)
+  m2 = strassen(a21 + a22, b11, threshold)
+  m3 = strassen(a11, b12 - b22, threshold)
+  m4 = strassen(a22, b21 - b11, threshold)
+  m5 = strassen(a11 + a12, b22, threshold)
+  m6 = strassen(a21 - a11, b11 + b12, threshold)
+  m7 = strassen(a12 - a22, b21 + b22, threshold)
+
+  c11 = m1 + m4 - m5 + m7
+  c12 = m3 + m5
+  c21 = m2 + m4
+  c22 = m1 - m2 + m3 + m6
+
+  top = np.hstack((c11, c12))
+  bottom = np.hstack((c21, c22))
+  c = np.vstack((top, bottom))
+
+  if is_padded:
+    return c[:-1, :-1]
+  return c
 
 
-    if is_padded:
-        return c[:-1,:-1]
-    return c
-
-
-print(strassen([[1,2],[3,4]],[[5,6],[7,8]]))
+print(strassen([[1, 2], [3, 4]], [[5, 6], [7, 8]], threshold=1))
